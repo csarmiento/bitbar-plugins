@@ -1,4 +1,8 @@
 #!/usr/bin/env python
+# <bitbar.title>Speedtest</bitbar.title>
+# <bitbar.version>v0.1</bitbar.version>
+# <bitbar.author>Camilo Sarmiento</bitbar.author>
+# <bitbar.desc>Monitors upload and download speeds using `speedtest-cli`.</bitbar.desc>
 
 import re
 import subprocess
