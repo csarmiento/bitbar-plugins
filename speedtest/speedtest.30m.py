@@ -14,12 +14,22 @@ import subprocess
 def main():
     try:
         output = subprocess.check_output(["/usr/local/bin/speedtest-cli"])
-        download = re.search('Download: (.*)', output).group(1)
-        upload = re.search('Upload: (.*)', output).group(1)
-        result = '%s :arrow_down:|size=10\n%s :arrow_up:|size=10'
-        print result % (download, upload)
+        download_str = re.search('Download: (.*)', output).group(1)
+        upload_str = re.search('Upload: (.*)', output).group(1)
+        download_val = float(re.search('(.*) Mbit/s', download_str).group(1))
+        upload_val = float(re.search('(.*) Mbit/s', upload_str).group(1))
+        print get_status('%s :arrow_down:' % (download_str), download_val, 42)
+        print get_status('%s :arrow_up:' % (upload_str), upload_val, 23)
     except subprocess.CalledProcessError as e:
         print e.output
+
+
+def get_status(status_str, current_val, min_value):
+    if (current_val >= min_value):
+        status_str += '|color=green'
+    else:
+        status_str += '|color=red'
+    return status_str
 
 
 main()
