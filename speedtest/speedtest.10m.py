@@ -9,17 +9,18 @@
 
 import re
 import subprocess
-
+import os
 
 def main():
     try:
+        os.environ['PYTHONHTTPSVERIFY'] = "0"
         output = subprocess.check_output(["/usr/local/bin/speedtest-cli"])
         download_str = re.search('Download: (.*)', output).group(1)
         upload_str = re.search('Upload: (.*)', output).group(1)
         download_val = float(re.search('(.*) Mbit/s', download_str).group(1))
         upload_val = float(re.search('(.*) Mbit/s', upload_str).group(1))
-        print get_status('%s :arrow_down:' % (download_str), download_val, 42)
-        print get_status('%s :arrow_up:' % (upload_str), upload_val, 23)
+        print get_status('%s :arrow_down:' % (download_str), download_val, 35)
+        print get_status('%s :arrow_up:' % (upload_str), upload_val, 7)
     except subprocess.CalledProcessError as e:
         print e.output
 
