@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 # <bitbar.title>Bitbar speedtest plugin</bitbar.title>
 # <bitbar.version>v0.1</bitbar.version>
@@ -7,9 +7,10 @@
 # <bitbar.desc>Monitors upload and download speeds using `speedtest-cli`.</bitbar.desc>
 # <bitbar.dependencies>python</bitbar.dependencies>
 
+import os
 import re
 import subprocess
-import os
+
 
 def main():
     try:
@@ -19,10 +20,10 @@ def main():
         upload_str = re.search('Upload: (.*)', output).group(1)
         download_val = float(re.search('(.*) Mbit/s', download_str).group(1))
         upload_val = float(re.search('(.*) Mbit/s', upload_str).group(1))
-        print get_status('%s :arrow_down:' % (download_str), download_val, 35)
-        print get_status('%s :arrow_up:' % (upload_str), upload_val, 7)
+        print(get_status('%s :arrow_down:' % (download_str), download_val, 35))
+        print(get_status('%s :arrow_up:' % (upload_str), upload_val, 7))
     except subprocess.CalledProcessError as e:
-        print e.output
+        print(e.output)
 
 
 def get_status(status_str, current_val, min_value):
