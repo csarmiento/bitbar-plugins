@@ -15,7 +15,8 @@ import subprocess
 def main():
     try:
         os.environ['PYTHONHTTPSVERIFY'] = "0"
-        output = subprocess.check_output(["/usr/local/bin/speedtest-cli"])
+        byte_output = subprocess.check_output(["/usr/local/bin/speedtest-cli"])
+        output = byte_output.decode("utf-8")
         download_str = re.search('Download: (.*)', output).group(1)
         upload_str = re.search('Upload: (.*)', output).group(1)
         download_val = float(re.search('(.*) Mbit/s', download_str).group(1))
