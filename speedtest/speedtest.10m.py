@@ -7,14 +7,12 @@
 # <bitbar.desc>Monitors upload and download speeds using `speedtest`.</bitbar.desc>
 # <bitbar.dependencies>python</bitbar.dependencies>
 
-import os
 import re
 import subprocess
 
 
 def main():
     try:
-        # os.environ['PYTHONHTTPSVERIFY'] = "0"
         byte_output = subprocess.check_output(["/usr/local/bin/speedtest"])
         output = byte_output.decode("utf-8")
 
