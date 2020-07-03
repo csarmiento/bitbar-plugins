@@ -38,10 +38,10 @@ def get_network_status(output):
     buffer.append(get_color_by_min(f'{upload_str.strip()} :arrow_up:', upload_val, 7))
     buffer.append(get_color_by_max(f'{latency_str.strip()} :zap:', latency_val, 50))
     if 'Not available' in packet_loss_str:
-        buffer.append('Not available :no_mobile_phones:|color=red')
+        buffer.append('Packet Loss: Not available|color=red')
     else:
         packet_loss_val = float(re.search('(.*)%', packet_loss_str).group(1))
-        buffer.append(get_color_by_max(f'{packet_loss_str.strip()} :no_mobile_phones:', packet_loss_val, 1))
+        buffer.append(get_color_by_max(f'Packet Loss: {packet_loss_str.strip()}', packet_loss_val, 1))
 
     return '\n'.join(buffer)
 
